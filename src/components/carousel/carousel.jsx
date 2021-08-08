@@ -33,7 +33,6 @@ const Carousel = ({ data, metric, children }) => {
     }
   };
 
-  console.log(activeIdx, itemsLength);
   return (
     <Box className={classes.root}>
       {activeIdx !== 0 && (
@@ -41,7 +40,6 @@ const Carousel = ({ data, metric, children }) => {
           className={`${classes.navButton} left`}
           onClick={() => prevClick()}
           variant="contained"
-          color="primary"
         >
           <ChevronLeft />
         </Button>
@@ -63,7 +61,6 @@ const Carousel = ({ data, metric, children }) => {
           className={`${classes.navButton} right`}
           onClick={() => nextClick()}
           variant="contained"
-          color="primary"
         >
           <ChevronRight />
         </Button>

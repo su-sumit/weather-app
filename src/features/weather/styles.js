@@ -16,15 +16,27 @@ export const useCarouselItemStyles = makeStyles((theme) => ({
       flexDirection: "column",
       justifyContent: "space-between",
       flex: 1,
-      border: "1px solid",
-      borderColor: "rgb(0 0 0 / 75%)",
       padding: "10px",
       borderRadius: 4,
+      background: "#F0FFFF",
+      textAlign: "center",
+      fontWeight: 500,
       "&.active": {
-        borderColor: theme.palette.primary.main,
+        background: "#1E90FF",
+        color: "white",
       },
     },
-    [theme.breakpoints.down("xs")]: {
+  },
+  temp: {
+    fontWeight: 800,
+    fontSize: "40px",
+  },
+  date: {},
+  [theme.breakpoints.down("xs")]: {
+    temp: {
+      fontSize: "30px",
+    },
+    carouselItem: {
       flex: `0 0 ${slideWidthXS}`,
     },
   },
@@ -33,8 +45,15 @@ export const useCarouselItemStyles = makeStyles((theme) => ({
 export const useStyles = makeStyles((theme) => ({
   root: {
     padding: 0,
+    background: "#FAFAFA",
   },
   paddedContainer: {
     padding: "10px",
+  },
+  appBar: {
+    padding: "10px",
+    marginBottom: "15px",
+    background: "#212121",
+    textAlign: "center",
   },
 }));

@@ -1,28 +1,22 @@
 import React from "react";
 import {
   FormControl,
-  FormLabel,
   RadioGroup,
   Radio,
   FormControlLabel,
-  styled,
 } from "@material-ui/core";
 
-const StyledFormControl = styled(FormControl)({
-  display: "flex",
-  "& .MuiFormGroup-root": {
-    flexDirection: "row",
-    // justifyContent: "space-between",
-  },
-});
+import { useStyles } from "./styles";
 
 export default function TemperatureUnitRadioGroup({ value, onTempUnitChange }) {
+  const classes = useStyles();
+
   const handleChange = (event) => {
     onTempUnitChange(event.target.value);
   };
 
   return (
-    <StyledFormControl>
+    <FormControl className={classes.root}>
       <RadioGroup
         aria-label="gender"
         name="gender1"
@@ -32,6 +26,6 @@ export default function TemperatureUnitRadioGroup({ value, onTempUnitChange }) {
         <FormControlLabel value="c" control={<Radio />} label="Celsius" />
         <FormControlLabel value="f" control={<Radio />} label="Fahrenheit" />
       </RadioGroup>
-    </StyledFormControl>
+    </FormControl>
   );
 }

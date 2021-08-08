@@ -1,8 +1,8 @@
 import React from "react";
+import { ErrorBoundary } from "react-error-boundary";
+
 import { WeatherApp } from "./features/weather";
 import "./App.css";
-
-import { ErrorBoundary } from "react-error-boundary";
 
 function ErrorFallback({ error, resetErrorBoundary }) {
   return (

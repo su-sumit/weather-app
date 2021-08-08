@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AppBar, Typography, Container, Box, Grid } from "@material-ui/core";
-
+import { Alert } from "@material-ui/lab";
 import {
   fetchWeatherAsync,
   selectWeatherData,
@@ -23,17 +23,10 @@ const CarouselSlideItem = ({ data, metric, onClickHandler, isActive }) => {
       onClick={onClickHandler}
     >
       <div className={`carousel-slide-item__body${isActive ? " active" : ""}`}>
-        <Typography
-          className={classes.date}
-          variant="subtitle2"
-          component="p"
-          color="inherit"
-        >
-          {`Date: ${data.date}`}
-        </Typography>
-        <Typography className={classes.temp} variant="h6" color="inherit">
+        <div className={classes.date}>{data.date}</div>
+        <div className={classes.temp}>
           {`${data.avgTemp[metric]}° ${metric.toUpperCase()}`}
-        </Typography>
+        </div>
       </div>
     </Grid>
   );
@@ -49,6 +42,7 @@ export function WeatherApp() {
   const appState = useSelector(selectAppState);
   const dispatch = useDispatch();
   const isLoading = appState === "loading";
+  const isError = appState === "error";
 
   useEffect(() => {
     dispatch(fetchWeatherAsync());
@@ -60,12 +54,13 @@ export function WeatherApp() {
 
   return (
     <Container className={classes.root} maxWidth="lg">
-      <AppBar className="appBar" position="static">
-        <Typography variant="h6" color="inherit">
+      <AppBar className={classes.appBar} position="static">
+        <Typography variant="h5" component="h5">
           Weather App
         </Typography>
       </AppBar>
       <Box className={classes.paddedContainer}>
+        {isError && <Alert severity="error">This is an error message!</Alert>}
         <TemperatureUnitRadioGroup
           value={metric}
           onTempUnitChange={setMetric}
@@ -88,6 +83,7 @@ export function WeatherApp() {
         <BarChart
           data={weatherData[activeDayIndex]?.weatherSlots}
           metric={metric}
+          dateSelected={weatherData[activeDayIndex]?.date}
         />
       </Box>
     </Container>

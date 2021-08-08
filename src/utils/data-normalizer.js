@@ -7,9 +7,6 @@ const dateFormatOptions = {
 export function normalizeData(data) {
   data.sort((t1, t2) => t1.dt - t2.dt);
   const normalized = {};
-  data.forEach((d) => {
-    console.log(d.dt_txt, d.weather[0]);
-  });
 
   data.forEach((weatherSlot) => {
     const {
@@ -41,7 +38,6 @@ export function normalizeData(data) {
     const newAvgC = normalized[key].avgTemp.c * prevLen + slotTemp.c;
     const newAvgF = normalized[key].avgTemp.f * prevLen + slotTemp.f;
 
-    console.log(newAvgF);
     normalized[key].avgTemp.c = Math.round(
       newAvgC / normalized[key].weatherSlots.length
     );
@@ -49,6 +45,5 @@ export function normalizeData(data) {
       newAvgF / normalized[key].weatherSlots.length
     );
   });
-  console.log(Object.values(normalized));
   return Object.values(normalized);
 }

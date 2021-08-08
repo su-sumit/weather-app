@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: "20px",
+    marginBottom: "25px",
   },
   carouselInner: {
     display: "flex",
@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     margin: "15px 30px",
     overflow: "hidden",
+    [theme.breakpoints.down("xs")]: {
+      margin: "15px 20px",
+    },
   },
   navButton: {
     borderRadius: "50%",
